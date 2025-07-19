@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Internship Table Output</title>
+  <style>
+    table, th, td {
+      border: 1px solid black;
+      border-collapse: collapse;
+      padding: 6px;
+    }
+    table {
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Table 1: Original Data</h2>
+  <table id="table1">
+    <thead>
+      <tr><th>Index #</th><th>Value</th></tr>
+    </thead>
+    <tbody id="table1-body">
+    </tbody>
+  </table>
+
+  <h2>Table 2: Calculated Result</h2>
+  <table>
+    <thead>
+      <tr><th>Category</th><th>Value</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Alpha</td><td id="alpha"></td></tr>
+      <tr><td>Beta</td><td id="beta"></td></tr>
+      <tr><td>Charlie</td><td id="charlie"></td></tr>
+    </tbody>
+  </table>
+
+  <script>
+    const tableData = [
+      ["A1", 41], ["A2", 18], ["A3", 21], ["A4", 63], ["A5", 2],
+      ["A6", 53], ["A7", 5], ["A8", 57], ["A9", 60], ["A10", 93],
+      ["A11", 28], ["A12", 3], ["A13", 90], ["A14", 39], ["A15", 80],
+      ["A16", 88], ["A17", 49], ["A18", 60], ["A19", 26], ["A20", 28]
+    ];
+
+    const tbody = document.getElementById("table1-body");
+    tableData.forEach(([label, value]) => {
+      const row = document.createElement("tr");
+      row.innerHTML = `<td>${label}</td><td>${value}</td>`;
+      tbody.appendChild(row);
+    });
+
+    const valueMap = Object.fromEntries(tableData);
+
+    const alpha = valueMap["A5"] + valueMap["A20"];
+    const beta = valueMap["A15"] / valueMap["A7"];
+    const charlie = valueMap["A13"] * valueMap["A12"];
+
+    document.getElementById("alpha").textContent = alpha;
+    document.getElementById("beta").textContent = beta;
+    document.getElementById("charlie").textContent = charlie;
+  </script>
+</body>
+</html>
